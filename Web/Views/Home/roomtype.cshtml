@@ -1,0 +1,61 @@
+﻿
+@{
+                /**/
+
+                ViewBag.Title = "教室介紹";
+}
+
+<div class="container-fluid">
+</div>
+
+<div class="container-fluid content-header">
+    <div class="row">
+        @if (isset($result))
+            @foreach ($result as $i =>$row)
+<div class="col-md-4">
+    <!-- AREA CHART -->
+    <div class="card">
+
+        <div class="card-body">
+
+            <div class="mbox">
+                <div class="d-img mimg-rounded">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            @foreach (explode(';', $row->pic) as $infopic)
+                            <div class="swiper-slide"><img src="{{ url('/') }}/images/room/{{$infopic}}" class="img-responsive"></div>
+                            @endforeach
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-txt">
+                <div class="mtitle">
+                    {{$row->rtitle}}
+                </div>
+                <hr>
+                <div class="mdetail">
+                    <p><font color="#007979">{{ trans('translang.roomtype') }}</font> {{$row->rtype}} <font color="#007979">{{ trans('translang.capacity') }}</font> {{$row->seatnum}} {{ trans('translang.person') }} <font color="#007979">{{ trans('translang.equipped') }}</font> {{$row->accessory}}</p>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+
+            @endforeach
+            @endif
+
+        </div>
+    </div>
+
+
+
+    @endsection
+

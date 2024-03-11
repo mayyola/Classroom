@@ -1,0 +1,18 @@
+﻿@using Web.Models
+@model Member
+@*using Web.Models.Member**@
+@{
+    ViewBag.Title = "Result";
+}
+
+<h2>Result</h2>
+<div class="container">
+    <ul>
+        <li>@Html.DisplayNameFor(m=>m.Id) : @Html.DisplayFor(m=>m.Id)</li>
+        <li>@Html.DisplayNameFor(m=>m.Password):@Html.DisplayFor(m=>m.Password)</li>
+        <li>@Html.DisplayNameFor(m=>m.Password2):@Html.DisplayFor(m=>m.Password2)</li>
+        <li>@Html.DisplayNameFor(m => m.Age):@Html.DisplayFor(m=>m.Age)</li>
+        <li>@Html.DisplayNameFor(m=>m.Email):@Html.DisplayFor(m=>m.Email)</li>
+        <li>@Html.DisplayNameFor(m=>m.Birthday):@Html.DisplayFor(m=>m.Birthday)</li>
+    </ul>
+</div>

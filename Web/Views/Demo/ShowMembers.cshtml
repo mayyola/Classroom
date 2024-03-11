@@ -1,0 +1,22 @@
+﻿
+@using Web.Models
+@*model IEnumerable<Student>*@
+@{
+    ViewBag.Title = "ShowMembers";
+}
+
+<h2>ShowMembers</h2>
+
+<div>
+    @{
+        foreach (var member in Model)
+        {
+            <label>會員編號:</label> @member.id
+            <br />
+            <label>會員姓名:</label> @member.name
+            <br />
+            <label>年齡:</label> @member.score
+            <hr />
+        }
+    }
+</div>

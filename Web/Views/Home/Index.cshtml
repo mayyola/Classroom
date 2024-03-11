@@ -1,0 +1,53 @@
+﻿@using Web.Models
+@RenderPage("timepicker.cshtml")
+<div class="table-responsive">
+    <table class="table table-bordered daily" id="pilot">
+        <thead>
+            <tr>
+                <th>節次</th>  <!--節次-->
+                @{
+           
+                    AuthLogin classtrans = new AuthLogin();
+                    string[] result = classtrans.RoomNum();
+                    foreach (string roomId in result)
+                    {
+                        <th><center>@roomId</center></th>
+                    }
+                }
+
+            </tr>
+
+        </thead>
+        <tbody>
+            <!-課表跟節次-->
+            @{
+         
+                string[] sectiontime = classtrans.Sectiontime();
+                for (int i=0;i< classtrans.Section().Length;i++)
+                {
+                    <tr>
+                       <td bgcolor="#A3D1D1"><center>@classtrans.Section()[i]<br>@sectiontime[i]</center></td>
+
+                        @for (int j=0;j<classtrans.RoomNum().Length;j++)
+                        {
+
+
+
+                                   if(@ViewBag.Info[i, j] != null)
+                                   {
+                                      <td>@ViewBag.Info[i, j]<br>@ViewBag.Pname[i,j]</td>
+                                   }
+                                   else
+                                   {
+                                      <td></td>
+                                   }
+
+                        }
+                    </tr>
+
+                    i++;
+                }
+            }
+        <tbody>
+    </table>
+</div>
