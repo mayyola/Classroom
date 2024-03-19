@@ -1,4 +1,4 @@
-﻿@using Web.Models
+@using Web.Models
 @RenderPage("timepicker.cshtml")
 <div class="table-responsive">
     <table class="table table-bordered daily" id="pilot">
@@ -23,6 +23,7 @@
             @{
          
                 string[] sectiontime = classtrans.Sectiontime();
+               
                 for (int i=0;i< classtrans.Section().Length;i++)
                 {
                     <tr>
@@ -45,7 +46,7 @@
                         }
                     </tr>
 
-                    
+                   
                 }
             }
         <tbody>
