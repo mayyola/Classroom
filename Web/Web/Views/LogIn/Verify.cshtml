@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Verify";
+}
+
+<h2>Verify</h2>
+<div>
+<ol>
+<li>User:@ViewBag.account</li>
+<li>Passoword:@ViewBag.password</li>
+</ol>
+    <div>
+    @Html.ActionLink("回登入畫面","Index",null,new {name="link",@class="btn btn-sm btn-default"})
+    </div>
+</div>
+

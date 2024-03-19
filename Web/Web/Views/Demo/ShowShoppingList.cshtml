@@ -1,0 +1,17 @@
+﻿@model Web.Models.MemberInfoViewModel
+@using Web.Models
+@{
+    ViewBag.Title = "ShowMembers";
+}
+
+<h2>ShowMembers</h2>
+
+<div>
+    <label>會員編號:</label> @Model.Student.id
+    <br />
+    <label>會員姓名:</label> @Model.Student.name
+    @foreach (var item in Model.Products)
+    {
+        <li>商品編號: @item.Member 品名: @item.Name 價格: @item.PriceP</li>
+    }
+</div>

@@ -1,0 +1,37 @@
+﻿ <!-- Date -->
+<form action="~/home/Index" method="post">
+    <!-- 自動產生 csrf_token 隱藏欄位--><!--這是選擇欄位 -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>指定日期:</label>
+                <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                    <div class="input-group-prepend" data-target="#reservationdate" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                    <input type="text" name="cdate" id="reservationdate" class="form-control datetimepicker-input" data-target="#reservationdate" value="@ViewBag.date">
+                    <div class="input-group-append">
+                        <!--按鈕搜尋-->
+                        <button type="submit" class="btn btn-info">確認</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <label>指定日期:</label>
+            <div class="d-flex flex-row">
+
+                <a href="~/home/date/@Convert.ToDateTime(ViewBag.date).AddDays(-30).ToString("yyyy-MM-dd")" class="btn btn-default"><i class="fa fa-fast-backward"></i>上個月</a>
+                <a href="~/home/date/@Convert.ToDateTime(ViewBag.date).AddDays(-7).ToString("yyyy-MM-dd")" class="btn btn-default"><i class="fa fa-backward"></i> 上週</a>
+                <a href="~/home/date/@Convert.ToDateTime(ViewBag.date).AddDays(-1).ToString("yyyy-MM-dd")" class="btn btn-default"><i class="fa fa-chevron-left"></i>上一天</a>
+                <a href="~/home/date/@DateTime.Now.ToString("yyyy-MM-dd")" class="btn btn-default"><i class="fa fa-home"></i></a>
+                <a href="~/home/date/@Convert.ToDateTime(ViewBag.date).AddDays(+1).ToString("yyyy-MM-dd")" class="btn btn-default"><i class="fa fa-chevron-right"></i> 下一天</a>
+                <a href="~/home/date/@Convert.ToDateTime(ViewBag.date).AddDays(+7).ToString("yyyy-MM-dd")" class="btn btn-default"><i class="fa fa-forward"></i> 下週</a>
+                <a href="~/home/date/@Convert.ToDateTime(ViewBag.date).AddDays(+30).ToString("yyyy-MM-dd")" class="btn btn-default"><i class="fa fa-fast-forward"></i> 下個月</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+

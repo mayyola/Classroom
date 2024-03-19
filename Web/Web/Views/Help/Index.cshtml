@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@*@<h2>Index</h2>
+
+    <div class="container">
+        @using (Html.BeginForm("Login", "Help", FormMethod.Post))
+        {
+            <div>
+                @Html.Label("帳號")
+                @Html.TextBox("id", null, new { @class = "form-control", required = "required" })
+            </div>
+            <br />
+            <div>
+                @Html.Label("密碼")
+                @Html.Password("password", null, new { @class = "form-control", required = "required" })
+            </div>
+            <br />
+            <div>
+                <input type="submit" name="submit" value="登入" class="btn btn-primary" />
+            </div>
+        }
+    </div>*@
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="container">
+    @using (Html.BeginForm("Login", "Help", FormMethod.Post))
+    {
+        <div>
+            @Html.Label("帳號")
+            @Html.TextBox("id", null, new { @class = "form-control", required = "required" })
+        </div>
+        <br />
+        <div>
+            @Html.Label("密碼")
+            @Html.Password("password", null, new { @class = "form-control", required = "required" })
+        </div>
+        <br />
+        <div>
+            <input type="submit" name="submit" value="登入" class="btn btn-primary" />
+        </div>
+    }
+</div>
+

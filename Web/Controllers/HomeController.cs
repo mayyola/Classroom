@@ -9,7 +9,8 @@ using Web.Models;
 using System.Data.Odbc;
 using System.Data;
 using Web.Filters;
-using Web.Models;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 namespace Web.Controllers
 {
    
@@ -18,12 +19,11 @@ namespace Web.Controllers
     {
         DataBase database;
         AuthLogin param;
-       
+      
         public HomeController()
         {
-            
+          
             param = new AuthLogin();
-
             database = new DataBase();
             database.conn.Open();
         }
@@ -52,33 +52,79 @@ namespace Web.Controllers
             MySqlCommand cmd = new MySqlCommand(sql, database.conn);
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Parameters.AddWithValue("@weekday", WeekDay);
-            MySqlDataReader reader = cmd.ExecuteReader();
             ViewBag.date = id;
             string[,] info = new string[param.Section().Length, param.RoomNum().Length];
-            string[,] pname = new string[param.Section().Count(), param.RoomNum().Count()];
-            while (reader.Read())
+            string[,] pname = new string[param.Section().Length, param.RoomNum().Length];
+            using (MySqlDataReader dr = cmd.ExecuteReader())
             {
-                foreach (char item in reader["classtime"].ToString())
+                while (dr.Read())
                 {
+                    foreach (char item in dr["classtime"].ToString())
+                    {
 
-                    int i = Array.IndexOf(param.Section(), item.ToString());
-                    int j = Array.IndexOf(param.RoomNum(), reader["classroom"].ToString());
-                    info[i, j] = reader["cname"].ToString();
-                    pname[i, j] = reader["pname"].ToString();
+                        int i = Array.IndexOf(param.Section(), item.ToString());
+                        int j = Array.IndexOf(param.RoomNum(), dr["classroom"].ToString());
+                        info[i, j] = dr["cname"].ToString();
+                        pname[i, j] = dr["pname"].ToString();
 
+
+                    }
 
                 }
-
             }
             ViewBag.Info = info;
             ViewBag.Pname = pname;
-           
+            
             return View("Index");
         }
-        public ActionResult roomtype()
-        {
 
-            return View();
+
+        public ActionResult Room(string id)
+        {
+            
+            string[,] info = new string[7, param.Section().Length];
+            string[,] pname = new string[7, param.Section().Length]; 
+            string FirstDay = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek + (int)DayOfWeek.Monday).ToString("yyyy-MM-dd");
+            var DateList = new List<DateList>();
+            for (var i = 0; i < 7; i++)
+            {
+
+                string mydate = Convert.ToDateTime(FirstDay).AddDays(+i).ToString("yyyy-MM-dd");
+
+                DateList.Add(new DateList { Date= mydate });
+                var idformat = mydate.Replace('-', ',');
+                DateTime datevalue = DateTime.Parse(idformat);
+                var WeekDay = param.WeekDay((int)datevalue.DayOfWeek);
+                var sql = @"
+               (SELECT cname, classroom,weekday,classtime, pname, uuser FROM loanlist WHERE starttime <= @id AND endtime >= @id AND weekday = @WeekDay AND classroom=@classroom AND status = 'T' order by created_at ASC) 
+                UNION
+               (SELECT cname, classroom,weekday,classtime, pname, uuser FROM course WHERE starttime <= @id AND endtime >= @id AND weekday = @WeekDay AND classroom=@classroom AND  status = 'T' order by created_at ASC) ";
+                MySqlCommand cmd = new MySqlCommand(sql, database.conn);
+                cmd.Parameters.AddWithValue("@id", datevalue);
+                cmd.Parameters.AddWithValue("@weekday", WeekDay);
+                cmd.Parameters.AddWithValue("@classroom", id);
+                using (MySqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        foreach (char item in dr["classtime"].ToString())
+                        {
+                         
+                            int q = Array.IndexOf(param.Section(),item.ToString());
+                            info[i, q] = dr["cname"].ToString();
+                            pname[i, q] = dr["pname"].ToString();
+
+
+                        }
+                    }
+                }
+            }
+            ViewBag.Room = id;
+            ViewBag.Info = info;
+            ViewBag.Pname = pname;
+            ViewBag.date = FirstDay;
+            ViewBag.weeDate = DateList;
+            return View("Room");
         }
         public ActionResult About()
         {

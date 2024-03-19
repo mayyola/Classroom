@@ -1,0 +1,45 @@
+﻿@using Web.Models
+@*model Web.Models.DateList*@
+@RenderPage("timepicker.cshtml")
+<p>目前查詢教室:@ViewBag.Room</p> <!--目前查詢教室-->
+<div class="table-responsive">
+    <table class="table table-bordered" id="pilot">
+        <thead>
+            <tr>
+                <p>@ViewBag.Room</p> <!--目前查詢教室-->
+                <th>節次</th>  <!--教室號碼-->
+                @{
+
+                    AuthLogin Auth = new AuthLogin();
+                    string[] weekday = Auth.weekdaych();
+                    string[] sectiontime = Auth.Sectiontime();
+                    foreach (var date in ViewBag.weeDate)
+                    {
+
+                     <th>星期 @weekday[ViewBag.weeDate.IndexOf(date)] @date.Date</th> <!--時間與星期幾-->
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+         @{ for (int j = 0; j < Auth.Section().Length; j++)
+             {
+            <tr>
+                <td bgcolor="#A3D1D1"><center>@Auth.Section()[j]</center></td>
+                @for (int i = 0; i < 7; i++)
+                {
+                    if (@ViewBag.Info[i, j] != null)
+                    {
+                        <td>@ViewBag.Info[i, j]<br>@ViewBag.Pname[i, j]</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                }
+            </tr>
+           }
+             }
+        </tbody>
+    </table>
+</div>

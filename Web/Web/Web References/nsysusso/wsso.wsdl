@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ssotemp1.nsysu.edu.tw/ssoWebservice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="wsso" targetNamespace="http://ssotemp1.nsysu.edu.tw/ssoWebservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types />
+  <wsdl:message name="getRequestOneParam">
+    <wsdl:part name="param1" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getRequestTwoParam">
+    <wsdl:part name="param1" type="xsd:string" />
+    <wsdl:part name="param2" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getRequestTreeParam">
+    <wsdl:part name="param1" type="xsd:string" />
+    <wsdl:part name="param2" type="xsd:string" />
+    <wsdl:part name="param3" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getRequestFourParam">
+    <wsdl:part name="param1" type="xsd:string" />
+    <wsdl:part name="param2" type="xsd:string" />
+    <wsdl:part name="param3" type="xsd:string" />
+    <wsdl:part name="param4" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getRequestFiveParam">
+    <wsdl:part name="param1" type="xsd:string" />
+    <wsdl:part name="param2" type="xsd:string" />
+    <wsdl:part name="param3" type="xsd:string" />
+    <wsdl:part name="param4" type="xsd:string" />
+    <wsdl:part name="param5" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getResponse">
+    <wsdl:part name="Result" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="DemoPortType">
+    <wsdl:operation name="authUser3">
+      <wsdl:input message="tns:getRequestFourParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="authUser2">
+      <wsdl:input message="tns:getRequestFourParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAttr2">
+      <wsdl:input message="tns:getRequestFiveParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAttr3">
+      <wsdl:input message="tns:getRequestFiveParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="verifySessionId">
+      <wsdl:input message="tns:getRequestOneParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="verifyStuSessionId">
+      <wsdl:input message="tns:getRequestOneParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="verifySessionIdReturnAttr">
+      <wsdl:input message="tns:getRequestTwoParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="verifyStuSessionIdReturnAttr">
+      <wsdl:input message="tns:getRequestTwoParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="userinfo">
+      <wsdl:input message="tns:getRequestOneParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserInfo">
+      <wsdl:input message="tns:getRequestOneParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="authUser">
+      <wsdl:input message="tns:getRequestTreeParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAttr">
+      <wsdl:input message="tns:getRequestFourParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="authStu">
+      <wsdl:input message="tns:getRequestFourParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getStuAttr">
+      <wsdl:input message="tns:getRequestFiveParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="authStuOut">
+      <wsdl:input message="tns:getRequestFourParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getStuOutAttr">
+      <wsdl:input message="tns:getRequestFiveParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="verifypwdexpired">
+      <wsdl:input message="tns:getRequestOneParam" />
+      <wsdl:output message="tns:getResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DemoBinding" type="tns:DemoPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="verifySessionId">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#verifySessionId" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifypwdexpired">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#verifypwdexpired" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyStuSessionId">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#verifyStuSessionId" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifySessionIdReturnAttr">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#verifySessionIdReturnAttr" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verifyStuSessionIdReturnAttr">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#verifyStuSessionIdReturnAttr" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="userinfo">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#userinfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserInfo">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#getUserInfo" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authUser">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#authUser" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authUser2">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#authUser2" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authUser3">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#authUser3" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttr">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#getAttr" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttr2">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#getAttr2" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttr3">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#getAttr3" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authStu">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#authStu" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStuAttr">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#getStuAttr" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authStuOut">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#authStuOut" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStuOutAttr">
+      <soap:operation soapAction="urn:xmethods-delayed-demo#getStuOutAttr" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:xmethods-delayed-demo" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="get_user_info">
+    <wsdl:port name="DemoPort" binding="tns:DemoBinding">
+      <soap:address location="http://ssotemp1.nsysu.edu.tw/ssoWebservice/ws_server.php" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
